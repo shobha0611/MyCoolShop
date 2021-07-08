@@ -9,20 +9,14 @@ export default class AllProducts extends React.Component {
             allProducts: this.props.products,
             materials: this.props.materials,
             colors: this.props.colors,
-            addCart: [],
-            totalItems: 0
         };
-    }
-    addToCart = (p) => {
-        this.state.addCart.push(p)
-        localStorage.setItem('myCart', JSON.stringify(this.state.addCart));
     }
 
 
     render() {
         return (
             <div>
-                <div className="p-3">
+                <div className="p-3" style={{ marginTop: "11%" }}>
                     <div className="row">
                         <div className="col-md-2">
                             <LeftBar
@@ -46,8 +40,8 @@ export default class AllProducts extends React.Component {
                                             <div>
                                                 <div className="card border-0">
                                                     <div className="img_Container">
-                                                        <div className="overlay">
-                                                            <div className="cartStyle" onClick={() => this.addToCart(product)}>
+                                                        <div className="overlay" onClick={() => this.props.addToCart(product)}>
+                                                            <div className="cartStyle">
                                                                 Add to Cart
                                                             </div>
                                                         </div>

@@ -12,12 +12,7 @@ export default class FeaturedProducts extends React.Component {
             colors: this.props.colors,
             featuredProducts: this.props.featuredProducts,
             filteredProduct: [],
-            addCart: []
         };
-    }
-    addToCart = (p) => {
-        this.state.addCart.push(p)
-        localStorage.setItem('myCart', JSON.stringify(this.state.addCart));
     }
 
     render() {
@@ -31,7 +26,7 @@ export default class FeaturedProducts extends React.Component {
         );
         return (
             <div>
-                <div className="p-3">
+                <div className="p-3" style={{ marginTop: "11%" }}>
                     <div className="row">
                         <div className="col-md-2">
                             <LeftBar
@@ -55,8 +50,8 @@ export default class FeaturedProducts extends React.Component {
                                             <div>
                                                 <div className="card border-0">
                                                     <div className="img_Container">
-                                                        <div className="overlay">
-                                                            <div className="cartStyle" onClick={() => this.addToCart(product)}>
+                                                        <div className="overlay" onClick={() => this.props.addToCart(product)}>
+                                                            <div className="cartStyle">
                                                                 Add to Cart
                                                             </div>
                                                         </div>

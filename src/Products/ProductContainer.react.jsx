@@ -19,14 +19,17 @@ export class ProductContainer extends Component {
             error: false,
             errorMessage: [],
             activeArticle: {},
+            addCart: [],
+            activeTab: true,
+            totalItems: 0
         };
     }
 
     componentDidMount() {
-        // const cartItems = localStorage.getItem("myCart") === null ? 0 : JSON.parse(localStorage.getItem("myCart"));
+        const cartItems =
+            JSON.parse(localStorage.getItem("myCart"));
+        this.setState({ addCart: cartItems });
 
-        // this.setState({ totalItems: cartItems });
-        // console.log("totalItems", this.state.totalItems)
         this.props.actions.fetchAllProducts(this.props.products)
             .then(() => {
                 this.props.actions.fetchMaterial()
@@ -40,34 +43,50 @@ export class ProductContainer extends Component {
             });
     }
 
+    addToCart = (p) => {
+        this.state.addCart = this.state.addCart || [];
+        this.state.addCart.push(p);
+        localStorage.setItem('myCart', JSON.stringify(this.state.addCart));
 
+        const cartItems = JSON.parse(localStorage.getItem("myCart"))
+        this.setState({ addCart: cartItems });
+    }
     render() {
+        const path = [
+            { tab1: "/" },
+            { tab2: "/featuredProducts" }
+        ]
+        let cartItemCount = this.state.addCart === null ? 0 : this.state.addCart.length
         return (
             <div style={{ paddingBottom: "60px" }}>
-                <Header />
+                <Header
+                    totalItems={cartItemCount}
+                />
                 <div className="p-2 mt-4">
                     <Router>
                         <Route>
                             <div>
                                 <Route
                                     exact
-                                    path="/"
+                                    path={path.tab1}
                                     component={() => (
                                         <AllProducts
                                             {...this.props}
                                             products={this.props.products}
                                             materials={this.props.materials}
                                             colors={this.props.colors}
+                                            addToCart={this.addToCart}
                                         />)}
                                 />
                                 <Route
-                                    path="/featuredProducts"
+                                    path={path.tab2}
                                     component={() => (
                                         <FeaturedProducts
                                             featuredProducts={this.props.featuredProducts}
                                             products={this.props.products}
                                             materials={this.props.materials}
                                             colors={this.props.colors}
+                                            addToCart={this.addToCart}
                                         />
                                     )}
                                 />

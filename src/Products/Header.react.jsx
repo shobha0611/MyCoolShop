@@ -9,21 +9,14 @@ export default class Header extends React.Component {
             totalItems: 0
         };
     }
-    // componentDidMount() {
-    //     // window.addEventListener("message", this.receiveMessage, false);
-    //     const cartItems = localStorage.getItem(null) ? 0 : JSON.parse(localStorage.getItem("myCart"));
-
-    //     this.setState({ totalItems: cartItems });
-    //     console.log("totalItems", this.state.totalItems)
-    // }
     render() {
         return (
-            <div>
-                <h3 className="container text-center p-4">
+            <div className="header">
+                <h3 className="text-center p-4">
                     MYCOOLSHOOP.COM
                 </h3>
-                <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                    <a className="navbar-brand" href="/">
+                <nav className="navbar navbar-expand-lg navbar-light" style={{ background: "#ededed" }}>
+                    <a className="navbar-brand" href="/" style={{ fontSize: "1em" }}>
                         All Products
                     </a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +24,7 @@ export default class Header extends React.Component {
                     </button>
 
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <a className="navbar-brand" href="/featuredProducts">
+                        <a className="navbar-brand" href="/featuredProducts" style={{ fontSize: "1em" }}>
                             Featured Products
                         </a>
                     </div>
@@ -39,7 +32,7 @@ export default class Header extends React.Component {
                         <div className="navbar-brand" style={{ fontSize: "1.7em" }}>
                             <i className="fa fa-shopping-cart">
 
-                                {/* <span className="badge badge-light">{cartItems.length}</span> */}
+                                <span className="badge badge-light">{this.props.totalItems}</span>
                             </i>
                         </div>
                     </div>
