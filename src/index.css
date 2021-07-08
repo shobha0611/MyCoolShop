@@ -11,3 +11,38 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.img_Container {
+  position: relative;
+}
+
+.image {
+  display: block;
+}
+
+.overlay {
+  position: absolute; 
+  top: 0; 
+  bottom:0;
+  left:0;
+  right:0;
+  background: rgb(0, 0, 0);
+  background: #000000b8; /* Black see-through */
+  color: #f1f1f1; 
+  width: 100%;
+  transition: .5s ease;
+  opacity:0;
+  color: white;
+  font-size: 20px;
+  padding: 20px;
+  text-align: center;
+}
+
+.img_Container:hover .overlay {
+  opacity: 1;
+
+}
+.cartStyle{
+  margin-top: 60%;
+  font-size: 0.9em;
+}

@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// Import from NPM
+// -------------------------------------
+import React, { Component } from "react";
+
+// Import from component 
+// -------------------------------
+import ProductContainer from "./Products/ProductContainer.react";
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      rehydrated: false,
+      totalCartItems: 0
+    };
+  }
+
+  render() {
+    return (
+      <div style={{ paddingBottom: "60px" }}>
+        <ProductContainer />
+      </div>
+    );
+  }
 }
+
 
 export default App;

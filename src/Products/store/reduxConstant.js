@@ -1,0 +1,5 @@
+export const FETCH_PRODUCTS = "FETCH_PRODUCTS";
+export const FETCH_MATERIAL = "FETCH_MATERIAL";
+export const FETCH_COLOR = "FETCH_COLOR";
+export const FEATURED_PRODUCT = "FEATURED_PRODUCT";
+
