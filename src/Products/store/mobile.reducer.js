@@ -4,7 +4,7 @@ import { combineReducers } from "redux";
 
 // Import Reducer Routes
 // -------------------------------------
-import { ProductReducer } from "../store/reducer";
+import { ProductReducer } from "../redux/Product.reducer.react";
 
 let RootReducer = combineReducers({
     Products: ProductReducer,

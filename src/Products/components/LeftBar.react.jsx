@@ -3,27 +3,21 @@
 import React from "react";
 
 export default class LeftBar extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-
-        };
-    }
-
+   
     render() {
         return (
             <div>
                 <div>
-                    <h5>Tags</h5>
-                    <div key="_all">All</div>
-                    <div key="_a">Generic</div>
+                    <h6>Tags</h6>
+                    <div>All</div>
+                    <div>Generic</div>
                     <div>Generic</div>
                     <div>Generic</div>
                     <div>Generic</div>
                 </div>
                 <br />
                 <div>
-                    <h5>Materials</h5>
+                    <h6>Materials</h6>
                     <div>All</div>
                     {this.props.materials.map((material, idx) =>
                         <div key={idx}> {material.name}</div>
@@ -32,7 +26,7 @@ export default class LeftBar extends React.Component {
                 </div>
                 <br />
                 <div>
-                    <h5>Colors</h5>
+                    <h6>Colors</h6>
                     <div>All</div>
                     {this.props.colors.map((color,i) =>
                         <div key={i}> {color.name}</div>

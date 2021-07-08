@@ -1,15 +1,12 @@
 // Import from NPM
 // -------------------------------------
 import React from "react";
+
+// Import from component
+// -------------------------------------
 import LeftBar from "./components/LeftBar.react";
 
 export default class Header extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            totalItems: 0
-        };
-    }
     render() {
         let cartStyle = {
             marginRight: "10px",
@@ -26,10 +23,10 @@ export default class Header extends React.Component {
         return (
             <div>
                 <div className="header d-none d-sm-none d-lg-block d-md-block">
-                    <h4 className="text-center p-4">
+                    <h5 className="text-center mb-0" style={{ padding: "20px" }}>
                         <a href="/">MYCOOLSHOOP.COM</a>
-                    </h4>
-                    <nav className="navbar navbar-expand-lg navbar-expand-md navbar-light" style={{ background: "#ededed" }}>
+                    </h5>
+                    <nav className="navbar navbar-expand-lg navbar-expand-md navbar-light p-3" style={{ background: "#ededed" }}>
                         <a className="navbar-brand" href="/" style={{ fontSize: "1em" }}>
                             All Products
                         </a>
@@ -51,10 +48,10 @@ export default class Header extends React.Component {
                             <span className="badge badge-light">{this.props.totalItems}</span>
                         </i>
                     </div>
-                    <nav class="navbar navbar-inverse">
+                    <nav className="navbar navbar-inverse">
                         <div>
-                            <div class="navbar-header">
-                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                            <div className="navbar-header">
+                                <button className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                                     <i className="fa fa-bars" />
                                 </button>
                                 <a className="text-center p-4" href="/">
@@ -62,16 +59,16 @@ export default class Header extends React.Component {
                                 </a>
 
                             </div>
-                            <div class="collapse navbar-collapse" id="myNavbar" style={{ background: "#fff" }}>
-                                <ul class="nav navbar-nav pt-4">
-                                    <h5><a className="navbar-brand" href="/" style={{ fontSize: "1em" }}>
+                            <div className="collapse navbar-collapse" id="myNavbar" style={{ background: "#fff" }}>
+                                <ul className="nav navbar-nav pt-4">
+                                    <p><a className="navbar-brand" href="/" style={{ fontSize: "1em" }}>
                                         All Products
                                     </a>
-                                    </h5>
-                                    <h5><a className="navbar-brand" href="/featuredProducts" style={{ fontSize: "1em" }}>
+                                    </p>
+                                    <p><a className="navbar-brand" href="/featuredProducts" style={{ fontSize: "1em" }}>
                                         Featured Products
                                     </a>
-                                    </h5>
+                                    </p>
                                 </ul>
                                 <LeftBar
                                     materials={this.props.materials}

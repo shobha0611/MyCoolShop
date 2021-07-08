@@ -1,5 +1,5 @@
 import { REHYDRATE } from "redux-persist/constants";
-import { FETCH_PRODUCTS, FETCH_MATERIAL, FETCH_COLOR, FEATURED_PRODUCT } from "./reduxConstant";
+import { FETCH_PRODUCTS, FETCH_MATERIAL, FETCH_COLOR, FEATURED_PRODUCT } from "../store/reduxConstant";
 
 const initialBlogState = {
     products: [],

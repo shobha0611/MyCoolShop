@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import ProductsAction from "./redux/products.action.react";
+import ProductsAction from "./redux/Products.action.react";
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -15,9 +15,6 @@ export class ProductContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            fetchCompleted: false,
-            error: false,
-            errorMessage: [],
             activeArticle: {},
             addCart: [],
             activeTab: true,
@@ -52,10 +49,6 @@ export class ProductContainer extends Component {
         this.setState({ addCart: cartItems });
     }
     render() {
-        const path = [
-            { tab1: "/" },
-            { tab2: "/featuredProducts" }
-        ]
         let cartItemCount = this.state.addCart === null ? 0 : this.state.addCart.length
         return (
             <div style={{ paddingBottom: "60px" }}>
@@ -67,21 +60,21 @@ export class ProductContainer extends Component {
                 <div className="p-2 mt-4">
                     <Router>
                         <Route>
-                            <div style={{ marginTop: "10%" }}>
+                            <div style={{ marginTop: "9%" }}>
                                 <Route
                                     exact
-                                    path={path.tab1}
+                                    path={"/"}
                                     component={() => (
                                         <AllProducts
-                                            {...this.props}
                                             products={this.props.products}
                                             materials={this.props.materials}
                                             colors={this.props.colors}
                                             addToCart={this.addToCart}
+                                            featuredProducts={this.props.featuredProducts}
                                         />)}
                                 />
                                 <Route
-                                    path={path.tab2}
+                                    path={"/featuredProducts"}
                                     component={() => (
                                         <FeaturedProducts
                                             featuredProducts={this.props.featuredProducts}
