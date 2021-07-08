@@ -57,7 +57,7 @@ export default class FeaturedProducts extends React.Component {
                                                         </div>
                                                         <img className="card-img-top" src={product.image} alt="" />
                                                     </div>
-                                                    <div className="card-body">
+                                                    <div className="card-body" style={{ padding: "1rem 0" }}>
                                                         <h5 className="mb-1">{product.name}</h5>
                                                         <p>
                                                             <span> {mId} </span>

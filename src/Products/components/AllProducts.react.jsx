@@ -16,15 +16,15 @@ export default class AllProducts extends React.Component {
     render() {
         return (
             <div>
-                <div className="p-3" style={{ marginTop: "11%" }}>
+                <div className="p-3" >
                     <div className="row">
-                        <div className="col-md-2">
+                        <div className="col-md-2 d-none d-sm-none d-lg-block d-md-block">
                             <LeftBar
                                 materials={this.state.materials}
                                 colors={this.state.colors}
                             />
                         </div>
-                        <div className="col-md-10">
+                        <div className="col-md-10 col-sm-12">
                             <div className="row">
                                 {this.state.allProducts.map((product, idx) => {
                                     let materialId = this.state.materials.find(m =>
@@ -36,7 +36,7 @@ export default class AllProducts extends React.Component {
                                     let mId = materialId !== undefined ? materialId.name : "No materials"
                                     let cId = colorId !== undefined ? colorId.name : "No colors"
                                     return (
-                                        <div className="col-lg-4 col-sm-1 mb-4" key={idx}>
+                                        <div className="col-lg-4 col-md-6 col-xs-6 col-sm-6 mb-4" key={idx}>
                                             <div>
                                                 <div className="card border-0">
                                                     <div className="img_Container">
@@ -47,7 +47,7 @@ export default class AllProducts extends React.Component {
                                                         </div>
                                                         <img className="card-img-top" src={product.image} alt="" />
                                                     </div>
-                                                    <div className="card-body">
+                                                    <div className="card-body" style={{ padding: "1rem 0" }}>
                                                         <h5 className="mb-1">{product.name}</h5>
                                                         <p>
                                                             <span> {mId} </span>

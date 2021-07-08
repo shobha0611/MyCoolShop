@@ -61,11 +61,13 @@ export class ProductContainer extends Component {
             <div style={{ paddingBottom: "60px" }}>
                 <Header
                     totalItems={cartItemCount}
+                    materials={this.props.materials}
+                    colors={this.props.colors}
                 />
                 <div className="p-2 mt-4">
                     <Router>
                         <Route>
-                            <div>
+                            <div style={{ marginTop: "10%" }}>
                                 <Route
                                     exact
                                     path={path.tab1}
