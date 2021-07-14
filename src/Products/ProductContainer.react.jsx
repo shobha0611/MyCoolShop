@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from "./Header.react";
 import AllProducts from "./components/AllProducts.react";
 import FeaturedProducts from "./components/featuredProducts.react";
+import LeftBar from "./components/LeftBar.react";
 
 export class ProductContainer extends Component {
     constructor(props) {
@@ -18,7 +19,10 @@ export class ProductContainer extends Component {
             activeArticle: {},
             addCart: [],
             activeTab: true,
-            totalItems: 0
+            totalItems: 0,
+            filteredProduct: [],
+            filteredProducts: false,
+            product: null
         };
     }
 
@@ -41,53 +45,85 @@ export class ProductContainer extends Component {
     }
 
     addToCart = (p) => {
-        this.state.addCart = this.state.addCart || [];
-        this.state.addCart.push(p);
-        localStorage.setItem('myCart', JSON.stringify(this.state.addCart));
+        let cartData = this.state.addCart || [];
+        cartData.push(p);
+        localStorage.setItem('myCart', JSON.stringify(cartData));
 
-        const cartItems = JSON.parse(localStorage.getItem("myCart"))
+        const cartItems = JSON.parse(localStorage.getItem("myCart"));
         this.setState({ addCart: cartItems });
+    }
+
+    flilterdMaterial = (p) => {
+        let productData = this.props.products.map(m => {
+            if (p !== null) {
+                if (p.id === m.materialId) {
+                    this.setState({ filteredProducts: true })
+                    return m;
+                }
+            }
+            else {
+                return m;
+            }
+            return null;
+        });
+        this.setState({ product: productData });
     }
     render() {
         let cartItemCount = this.state.addCart === null ? 0 : this.state.addCart.length
         return (
-            <div style={{ paddingBottom: "60px" }}>
-                <Header
-                    totalItems={cartItemCount}
-                    materials={this.props.materials}
-                    colors={this.props.colors}
-                />
-                <div className="p-2 mt-4">
-                    <Router>
-                        <Route>
-                            <div style={{ marginTop: "9%" }}>
-                                <Route
-                                    exact
-                                    path={"/"}
-                                    component={() => (
-                                        <AllProducts
-                                            products={this.props.products}
-                                            materials={this.props.materials}
-                                            colors={this.props.colors}
-                                            addToCart={this.addToCart}
-                                            featuredProducts={this.props.featuredProducts}
-                                        />)}
-                                />
-                                <Route
-                                    path={"/featuredProducts"}
-                                    component={() => (
-                                        <FeaturedProducts
-                                            featuredProducts={this.props.featuredProducts}
-                                            products={this.props.products}
-                                            materials={this.props.materials}
-                                            colors={this.props.colors}
-                                            addToCart={this.addToCart}
+            <div>
+                <div>
+                    <Header
+                        totalItems={cartItemCount}
+                        materials={this.props.materials}
+                        colors={this.props.colors}
+                    />
+                </div>
+                <div>
+                    <div className="row" style={{ marginTop: "11%", width: "100%" }}>
+                        <div className="col-md-2 d-none d-sm-none d-lg-block d-md-block">
+                            <LeftBar
+                                products={this.props.products}
+                                materials={this.props.materials}
+                                colors={this.props.colors}
+                                addToCart={this.addToCart}
+                                featuredProducts={this.props.featuredProducts}
+                                flilterdMaterial={this.flilterdMaterial}
+                            />
+                        </div>
+                        <div className="col-md-10 col-sm-12">
+                            <Router>
+                                <Route>
+                                    <div>
+                                        <Route
+                                            exact
+                                            path={"/"}
+                                            component={() => (
+                                                <AllProducts
+                                                    products={this.state.filteredProducts ? this.state.product : this.props.products}
+                                                    materials={this.props.materials}
+                                                    colors={this.props.colors}
+                                                    addToCart={this.addToCart}
+                                                    featuredProducts={this.props.featuredProducts}
+                                                />)}
                                         />
-                                    )}
-                                />
-                            </div>
-                        </Route>
-                    </Router>
+                                        <Route
+                                            path={"/featuredProducts"}
+                                            component={() => (
+                                                <FeaturedProducts
+                                                    featuredProducts={this.props.featuredProducts}
+                                                    products={this.state.filteredProducts ? this.state.product : this.props.products}
+                                                    materials={this.props.materials}
+                                                    colors={this.props.colors}
+                                                    addToCart={this.addToCart}
+                                                />
+                                            )}
+                                        />
+                                    </div>
+                                </Route>
+                            </Router>
+                        </div>
+                    </div>
                 </div>
             </div >
         );

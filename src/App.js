@@ -7,17 +7,10 @@ import React, { Component } from "react";
 // -------------------------------
 import ProductContainer from "./Products/ProductContainer.react";
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      rehydrated: false,
-      totalCartItems: 0
-    };
-  }
 
   render() {
     return (
-      <div style={{ paddingBottom: "60px" }}>
+      <div>
         <ProductContainer />
       </div>
     );
